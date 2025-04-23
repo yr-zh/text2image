@@ -1,0 +1,141 @@
+## ComfyUI-Manager: installing dependencies done.
+[2024-11-02 09:38:53.048] ** ComfyUI startup time: 2024-11-02 09:38:53.048971
+[2024-11-02 09:38:53.049] ** Platform: Linux
+[2024-11-02 09:38:53.049] ** Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+[2024-11-02 09:38:53.049] ** Python executable: /usr/bin/python
+[2024-11-02 09:38:53.049] ** ComfyUI Path: /root/workdir_comfy
+[2024-11-02 09:38:53.049] ** Log path: /root/workdir_comfy/comfyui.log
+[2024-11-02 09:38:53.049] 
+Prestartup times for custom nodes:
+[2024-11-02 09:38:53.049]    0.9 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-11-02 09:38:53.049] 
+Total VRAM 81051 MB, total RAM 2063894 MB
+[2024-11-02 09:38:53.172] pytorch version: 2.3.0+cu121
+[2024-11-02 09:38:53.172] Set vram state to: NORMAL_VRAM
+[2024-11-02 09:38:53.172] Device: cuda:7 NVIDIA A100-SXM4-80GB : native
+[2024-11-02 09:38:53.315] Using pytorch cross attention
+[2024-11-02 09:38:53.513] [Prompt Server] web root: /root/workdir_comfy/ComfyUI/web
+[2024-11-02 09:38:53.727] ComfyUI found: /root/workdir_comfy/ComfyUI
+[2024-11-02 09:38:53.727] '/root/workdir_comfy/ComfyUI' added to sys.path
+[2024-11-02 09:38:54.403] [34mIb Custom Nodes: [92mLoaded[0m
+[2024-11-02 09:38:54.404] [34mComfyScript: [92mLoaded[0m
+[2024-11-02 09:38:54.415] ### Loading: ComfyUI-Manager (V2.51.8)
+[2024-11-02 09:38:54.454] ### ComfyUI Revision: 2779 [8ce2a105] | Released on '2024-10-22'
+[2024-11-02 09:38:54.458] 
+Import times for custom nodes:
+[2024-11-02 09:38:54.459]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/websocket_image_save.py
+[2024-11-02 09:38:54.460]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-GGUF
+[2024-11-02 09:38:54.460]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-11-02 09:38:54.460]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-to-Python-Extension
+[2024-11-02 09:38:54.461]    0.7 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyScript
+[2024-11-02 09:38:54.462] 
+[2024-11-02 09:38:54.478] Nodes: 229
+[2024-11-02 09:38:54.528] token:  2ba4b9416b194d129c42c8becb41a9ba
+[2024-11-02 09:38:54.587] Exception in thread Thread-1 (<lambda>):
+[2024-11-02 09:38:54.587] Traceback (most recent call last):
+[2024-11-02 09:38:54.587]   File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[2024-11-02 09:38:54.588]     self.run()
+[2024-11-02 09:38:54.588]   File "/usr/lib/python3.10/threading.py", line 953, in run
+[2024-11-02 09:38:54.588]     self._target(*self._args, **self._kwargs)
+[2024-11-02 09:38:54.589]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1365, in <lambda>
+[2024-11-02 09:38:54.589]     threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
+[2024-11-02 09:38:54.589]   File "/usr/local/lib/python3.10/dist-packages/nest_asyncio.py", line 30, in run
+[2024-11-02 09:38:54.589]     return loop.run_until_complete(task)
+[2024-11-02 09:38:54.589]   File "/usr/local/lib/python3.10/dist-packages/nest_asyncio.py", line 98, in run_until_complete
+[2024-11-02 09:38:54.589]     return f.result()
+[2024-11-02 09:38:54.589]   File "/usr/lib/python3.10/asyncio/futures.py", line 201, in result
+[2024-11-02 09:38:54.589]     raise self._exception.with_traceback(self._exception_tb)
+[2024-11-02 09:38:54.589]   File "/usr/lib/python3.10/asyncio/tasks.py", line 234, in __step
+[2024-11-02 09:38:54.589]     result = coro.throw(exc)
+[2024-11-02 09:38:54.589]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1362, in default_cache_update
+[2024-11-02 09:38:54.589]     await asyncio.gather(a, b, c, d, e)
+[2024-11-02 09:38:54.589]   File "/usr/lib/python3.10/asyncio/tasks.py", line 304, in __wakeup
+[2024-11-02 09:38:54.589]     future.result()
+[2024-11-02 09:38:54.589]   File "/usr/lib/python3.10/asyncio/tasks.py", line 232, in __step
+[2024-11-02 09:38:54.590]     result = coro.send(None)
+[2024-11-02 09:38:54.590]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:38:54.590]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:38:54.590]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_core.py", line 620, in get_data
+[2024-11-02 09:38:54.590]     async with session.get(uri) as resp:
+[2024-11-02 09:38:54.590]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/client.py", line 1197, in __aenter__
+[2024-11-02 09:38:54.590]     self._resp = await self._coro
+[2024-11-02 09:38:54.590]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/client.py", line 581, in _request
+[2024-11-02 09:38:54.590]     conn = await self._connector.connect(
+[2024-11-02 09:38:54.590]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 544, in connect
+[2024-11-02 09:38:54.590]     proto = await self._create_connection(req, traces, timeout)
+[2024-11-02 09:38:54.590]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 942, in _create_connection
+[2024-11-02 09:38:54.591]     _, proto = await self._create_proxy_connection(req, traces, timeout)
+[2024-11-02 09:38:54.591]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 1379, in _create_proxy_connection
+[2024-11-02 09:38:54.591]     return await self._start_tls_connection(
+[2024-11-02 09:38:54.591]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 1172, in _start_tls_connection
+[2024-11-02 09:38:54.591]     raise client_error(req.connection_key, OSError(msg))
+[2024-11-02 09:38:54.591] aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host raw.githubusercontent.com:443 ssl:default [None]
+[2024-11-02 09:38:54.717] ===== startup.py 启动成功 ======
+[2024-11-02 09:38:54.717] ===== 加载模型中 ======
+[2024-11-02 09:38:54.754] /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-GGUF/nodes.py:79: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)
+  torch_tensor = torch.from_numpy(tensor.data) # mmap
+[2024-11-02 09:38:54.759] 
+ggml_sd_loader:
+[2024-11-02 09:38:54.759]  GGMLQuantizationType.F32      322
+[2024-11-02 09:38:54.759]  GGMLQuantizationType.Q3_K     194
+[2024-11-02 09:38:54.781] model weight dtype torch.bfloat16, manual cast: None
+[2024-11-02 09:38:54.806] model_type FLUX
+[2024-11-02 09:38:55.407] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7f4c42fcb6f0>
+[2024-11-02 09:38:55.408] Traceback (most recent call last):
+[2024-11-02 09:38:55.408]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:38:55.408]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:38:55.408] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:38:55.408] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7f4c42fcb680>
+[2024-11-02 09:38:55.408] Traceback (most recent call last):
+[2024-11-02 09:38:55.408]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:38:55.408]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:38:55.408] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:38:55.409] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7f4c42fcb7d0>
+[2024-11-02 09:38:55.409] Traceback (most recent call last):
+[2024-11-02 09:38:55.409]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:38:55.409]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:38:55.409] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:38:55.409] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7f4c42fcb840>
+[2024-11-02 09:38:55.409] Traceback (most recent call last):
+[2024-11-02 09:38:55.409]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:38:55.409]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:38:55.409] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:38:59.281] 
+ggml_sd_loader:
+[2024-11-02 09:38:59.281]  GGMLQuantizationType.Q3_K     168
+[2024-11-02 09:38:59.281]  GGMLQuantizationType.F32       50
+[2024-11-02 09:38:59.281]  GGMLQuantizationType.Q6_K       1
+[2024-11-02 09:38:59.505] ===== 模型加载完成 ======
+[2024-11-02 09:38:59.508]  * Serving Flask app 'startup'
+[2024-11-02 09:38:59.508]  * Debug mode: off
+[2024-11-02 09:38:59.510] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8083
+ * Running on http://172.28.4.10:8083
+[2024-11-02 09:38:59.510] [33mPress CTRL+C to quit[0m
+[2024-11-02 09:39:38.889] 提示词长度: 7字
+[2024-11-02 09:39:38.889] 图片大小: 1024*1024
+[2024-11-02 09:39:39.542] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:39:39.557] Requested to load FluxClipModel_
+[2024-11-02 09:39:39.557] Loading 1 new model
+[2024-11-02 09:39:40.087] loaded completely 0.0 2237.80810546875 True
+[2024-11-02 09:39:41.094] Requested to load Flux
+[2024-11-02 09:39:41.094] Loading 1 new model
+[2024-11-02 09:39:42.218] loaded completely 0.0 3570.375244140625 True
+[2024-11-02 09:39:44.042] 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.29it/s]100%|████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.23it/s]
+[2024-11-02 09:39:44.053] Using pytorch attention in VAE
+[2024-11-02 09:39:44.054] Using pytorch attention in VAE
+[2024-11-02 09:39:44.113] Requested to load AutoencodingEngine
+[2024-11-02 09:39:44.113] Loading 1 new model
+[2024-11-02 09:39:44.456] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:39:44.913] 127.0.0.1 - - [02/Nov/2024 09:39:44] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:39:44.918] 提示词长度: 7字
+[2024-11-02 09:39:44.918] 图片大小: 1024*1024
+[2024-11-02 09:39:45.325] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:39:47.527] 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.33it/s]100%|████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:01<00:00,  2.34it/s]
+[2024-11-02 09:39:47.536] Using pytorch attention in VAE
+[2024-11-02 09:39:47.538] Using pytorch attention in VAE
+[2024-11-02 09:39:47.592] Requested to load AutoencodingEngine
+[2024-11-02 09:39:47.592] Loading 1 new model
+[2024-11-02 09:39:47.622] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:39:47.866] 127.0.0.1 - - [02/Nov/2024 09:39:47] "POST /api/v1/images/text2img HTTP/1.1" 200 -

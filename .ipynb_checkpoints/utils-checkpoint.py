@@ -1,0 +1,228 @@
+import os
+import json
+import torch
+from diffusers import StableDiffusion3Pipeline, KolorsPipeline, FluxPipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from openai import OpenAI
+from PIL import Image
+import io
+import base64
+
+
+# lang_map = {
+#     "zh": "Chinese",
+#     "en": "English"
+# }
+lang_map = {
+    "zh": "中文",
+    "en": "英语",
+    "it": "意大利语",
+    "el": "希腊语",
+    "de": "德语",
+    "pl": "波兰语",
+    "nl": "荷兰语",
+    "tr": "土耳其语",
+    "th": "泰语",
+    "pt": "葡萄牙语",
+    "vi": "越南语",
+    "es": "西班牙语",
+    "ja": "日语",
+    "id": "印尼语",
+    "he": "希伯来语",
+    "ru": "俄语",
+    "fr": "法语",
+    "fa": "波斯语",
+    "ar": "阿拉伯语"
+}
+try:
+    model_info = json.loads(os.getenv("LEADERBOARD_MODELHUB_KEY2INFO"))
+    token = model_info["token"]
+    base_url = model_info["entrypoint"]
+    modelId = model_info["model_key2info"]["llm"]["modelId"]
+except:
+    token = "2ba4b9416b194d129c42c8becb41a9ba"
+    base_url = "http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1"
+    modelId = "public/qwen2-72b-instruct-awq@main"
+print("token: ", token)
+client = OpenAI(base_url=base_url, api_key=token)
+
+
+class Translator:
+#     PROMPT_TEMPLATE = """Below is a Text-to-Image prompt written in {src_lang}, please translate it into {tgt_lang}:
+# \"{src_prompt}\".You must only return the {tgt_lang} prompt. You must not generate more than 77 tokens. """
+    PROMPT_TEMPLATE = """你是一个专业的翻译官。可以流利的将{src_lang}翻译为 {tgt_lang}，现在你需要为我翻译一段文生图prompt，\
+        prompt中可能包含主体、环境、动作以及图片风格等信息，你需要在保证整体翻译质量的前提下，尽量准确的翻译。\
+        注意：只需给出翻译结果，不需要解释也不需要说任何多余的话，只需给出翻译结果，且翻译结果不超过77个token。原prompt： \"{src_prompt}\"，现在请你直接给出结果，翻译结果："""
+    
+    TEMPLATE_V2 = """You are a Text-to-Image AI assistant，now you will get a prompt for image generation. You need to generate a series of short sentences that can improve the quality of image generation based on it, such as: 8k, RAW photo, best quality, masterpiece. \
+    You can use () to increase the weight, [] to decrease the weight. \
+    You should add appropriate words to make the images described in the prompt more aesthetically pleasing, \
+    but make sure there is a correlation between the input and output.You must not generate more than 77 tokens. \n\
+        ### Input: {raw_prompt}\n### Output:"""
+    
+    def __init__(self, model_id=modelId):
+        self.model_id = model_id
+        # self.model = AutoModelForCausalLM.from_pretrained(
+        #     model_id
+        # ).to(self.device)
+        # self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        ...
+
+    def t(self, src_prompt, src_lang_code, tgt_lang_code):
+        trans_prompt = self.PROMPT_TEMPLATE.format(
+            src_lang=lang_map[src_lang_code],
+            tgt_lang=lang_map[tgt_lang_code],
+            src_prompt=src_prompt
+        )
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": trans_prompt}
+        ]
+        kwargs = {
+            "model": self.model_id,
+            "messages": messages,
+            "temperature": 0.1,
+            "max_tokens": 128
+        }
+        response = client.chat.completions.create(**kwargs)
+        return response.choices[0].message.content
+
+    def bp(self, src_prompt): # prompt has translated to English
+        trans_prompt = self.TEMPLATE_V2.format(
+            raw_prompt=src_prompt
+        )
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": trans_prompt}
+        ]
+        kwargs = {
+            "model": self.model_id,
+            "messages": messages,
+            "temperature": 0.1,
+            "max_tokens": 128
+        }
+        response = client.chat.completions.create(**kwargs)
+        return response.choices[0].message.content
+        
+
+class BeautifulPropmt:
+    def __init__(self, model_path='../pai-bloom-1b1-text2prompt-sd-v2'):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
+        self.model = AutoModelForCausalLM.from_pretrained(model_path).eval().cuda()
+        self.TEMPLATE_V2 = 'Converts a simple image description into a prompt. \
+        Prompts are formatted as multiple related tags separated by commas, plus you can use () to increase the weight, [] to decrease the weight, \
+        or use a number to specify the weight. You should add appropriate words to make the images described in the prompt more aesthetically pleasing, \
+        but make sure there is a correlation between the input and output.\n\
+        ### Input: {raw_prompt}\n### Output:'
+
+    def generate(self, raw_prompt):
+        input = self.TEMPLATE_V2.format(raw_prompt=raw_prompt)
+        input_ids = self.tokenizer.encode(input, return_tensors='pt').cuda()
+        outputs = self.model.generate(
+            input_ids,
+            max_new_tokens=77,
+            do_sample=True,
+            temperature=1.1,
+            top_k=50,
+            top_p=0.95,
+            repetition_penalty=1.1,
+            num_return_sequences=1)
+
+        prompts = self.tokenizer.batch_decode(outputs[:, input_ids.size(1):], skip_special_tokens=True)
+        prompts = [p.strip() for p in prompts]
+        return prompts[0]
+
+
+class Painter:
+    def __init__(self, text2image_model_id, model):
+        self.model = model
+        if self.model == 'sd3':
+            self.pipeline = StableDiffusion3Pipeline.from_pretrained(
+                text2image_model_id, 
+                revision="fp16", 
+                torch_dtype=torch.float16
+            ).to("cuda")
+        elif self.model == 'kolors':
+            self.pipeline = KolorsPipeline.from_pretrained(
+                text2image_model_id, 
+                torch_dtype=torch.float16, 
+                variant="fp16"
+            ).to("cuda")
+        else:
+            self.pipeline = FluxPipeline.from_pretrained(
+                text2image_model_id, 
+                torch_dtype=torch.bfloat16).to("cuda")
+            self.pipeline.enable_model_cpu_offload()
+            repo_name = "../Hyper-SD"
+            # Take 16-steps lora as an example
+            ckpt_name = "Hyper-FLUX.1-dev-16steps-lora.safetensors"
+            self.pipeline.load_lora_weights(os.path.join(repo_name, ckpt_name))
+            self.pipeline.fuse_lora(lora_scale=0.125)
+            self.pipeline.to("cuda", dtype=torch.float16)
+        self.translator = Translator()
+        # self.bprompt = BeautifulPropmt()
+
+    def _translate(self, src_prompt, src_lang_code, tgt_lang_code):
+        tgt_prompt = self.translator.t(src_prompt, src_lang_code, tgt_lang_code)
+        return tgt_prompt
+    
+    def _beauty(self, src_prompt):
+        tgt_prompt = self.translator.bp(src_prompt)
+        return tgt_prompt
+    
+    def _image_to_base64(self, image):
+        buffered = io.BytesIO()
+        image.save(buffered, format="JPEG")
+        img_str = base64.b64encode(buffered.getvalue())
+        return img_str.decode()
+
+    def generate(self, src_prompt, src_lang_code="zh", tgt_lang_code="en", height=1024, width=1024):
+        # print("src prompt: ", src_prompt)
+        negative_prompt = "ow quality, worst quality:1.4, bad_prompt:0.8, monochrome:1.1, greyscale"
+        
+        if self.model == 'sd3':
+            tgt_prompt = self._translate(src_prompt, src_lang_code, tgt_lang_code)
+            # print("tgt prompt: ", tgt_prompt)
+            image = self.pipeline(
+                tgt_prompt,
+                negative_prompt=negative_prompt,
+                num_inference_steps=28,
+                guidance_scale=7.0,
+                height=height,
+                width=width
+            ).images[0]
+        elif self.model == 'kolors':
+            tgt_prompt = src_prompt
+            # print("tgt prompt: ", tgt_prompt)
+            image = self.pipeline(
+                prompt=tgt_prompt,
+                negative_prompt=negative_prompt,
+                guidance_scale=5.0,
+                num_inference_steps=50,
+                generator=torch.Generator(self.pipeline.device).manual_seed(66),
+            ).images[0]
+        else: 
+            tr_prompt = self._translate(src_prompt, src_lang_code, tgt_lang_code)  
+            print('tr_prompt:', tr_prompt)
+            
+            bf_prompt = self._beauty(tr_prompt)
+            # bf_prompt = self.bprompt.generate(tr_prompt)
+            print('bf_prompt:', bf_prompt)
+            
+            prompt = tr_prompt + ',' + bf_prompt
+            print('prompt:', prompt)
+            
+            print("device: ", self.pipeline.device)
+            image = self.pipeline(
+                prompt=tr_prompt,
+                prompt_2=prompt,
+                height=1024,
+                width=1024,
+                guidance_scale=3.5, #0.0,
+                output_type="pil",
+                num_inference_steps=16, #4,
+                max_sequence_length=256,
+                generator=torch.Generator(self.pipeline.device).manual_seed(66),
+                # generator=torch.Generator("cpu").manual_seed(0)
+            ).images[0]
+        return self._image_to_base64(image)

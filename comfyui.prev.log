@@ -1,0 +1,233 @@
+## ComfyUI-Manager: installing dependencies done.
+[2024-11-02 09:40:08.159] ** ComfyUI startup time: 2024-11-02 09:40:08.159803
+[2024-11-02 09:40:08.159] ** Platform: Linux
+[2024-11-02 09:40:08.159] ** Python version: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+[2024-11-02 09:40:08.159] ** Python executable: /usr/bin/python
+[2024-11-02 09:40:08.160] ** ComfyUI Path: /root/workdir_comfy
+[2024-11-02 09:40:08.160] ** Log path: /root/workdir_comfy/comfyui.log
+[2024-11-02 09:40:08.160] 
+Prestartup times for custom nodes:
+[2024-11-02 09:40:08.160]    0.9 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-11-02 09:40:08.160] 
+Total VRAM 81051 MB, total RAM 2063894 MB
+[2024-11-02 09:40:08.264] pytorch version: 2.3.0+cu121
+[2024-11-02 09:40:08.265] Set vram state to: NORMAL_VRAM
+[2024-11-02 09:40:08.265] Device: cuda:7 NVIDIA A100-SXM4-80GB : native
+[2024-11-02 09:40:08.412] Using pytorch cross attention
+[2024-11-02 09:40:08.613] [Prompt Server] web root: /root/workdir_comfy/ComfyUI/web
+[2024-11-02 09:40:08.829] ComfyUI found: /root/workdir_comfy/ComfyUI
+[2024-11-02 09:40:08.830] '/root/workdir_comfy/ComfyUI' added to sys.path
+[2024-11-02 09:40:09.556] [34mIb Custom Nodes: [92mLoaded[0m
+[2024-11-02 09:40:09.557] [34mComfyScript: [92mLoaded[0m
+[2024-11-02 09:40:09.568] ### Loading: ComfyUI-Manager (V2.51.8)
+[2024-11-02 09:40:09.603] ### ComfyUI Revision: 2779 [8ce2a105] | Released on '2024-10-22'
+[2024-11-02 09:40:09.606] 
+Import times for custom nodes:
+[2024-11-02 09:40:09.609]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/websocket_image_save.py
+[2024-11-02 09:40:09.609]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-GGUF
+[2024-11-02 09:40:09.610]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager
+[2024-11-02 09:40:09.611]    0.0 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-to-Python-Extension
+[2024-11-02 09:40:09.611]    0.7 seconds: /root/workdir_comfy/ComfyUI/custom_nodes/ComfyScript
+[2024-11-02 09:40:09.612] 
+[2024-11-02 09:40:09.632] Nodes: 229
+[2024-11-02 09:40:09.688] token:  2ba4b9416b194d129c42c8becb41a9ba
+[2024-11-02 09:40:09.724] Exception in thread Thread-1 (<lambda>):
+[2024-11-02 09:40:09.725] Traceback (most recent call last):
+[2024-11-02 09:40:09.725]   File "/usr/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+[2024-11-02 09:40:09.725]     self.run()
+[2024-11-02 09:40:09.725]   File "/usr/lib/python3.10/threading.py", line 953, in run
+[2024-11-02 09:40:09.725]     self._target(*self._args, **self._kwargs)
+[2024-11-02 09:40:09.725]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1365, in <lambda>
+[2024-11-02 09:40:09.725]     threading.Thread(target=lambda: asyncio.run(default_cache_update())).start()
+[2024-11-02 09:40:09.725]   File "/usr/local/lib/python3.10/dist-packages/nest_asyncio.py", line 30, in run
+[2024-11-02 09:40:09.725]     return loop.run_until_complete(task)
+[2024-11-02 09:40:09.725]   File "/usr/local/lib/python3.10/dist-packages/nest_asyncio.py", line 98, in run_until_complete
+[2024-11-02 09:40:09.725]     return f.result()
+[2024-11-02 09:40:09.726]   File "/usr/lib/python3.10/asyncio/futures.py", line 201, in result
+[2024-11-02 09:40:09.726]     raise self._exception.with_traceback(self._exception_tb)
+[2024-11-02 09:40:09.726]   File "/usr/lib/python3.10/asyncio/tasks.py", line 234, in __step
+[2024-11-02 09:40:09.726]     result = coro.throw(exc)
+[2024-11-02 09:40:09.726]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1362, in default_cache_update
+[2024-11-02 09:40:09.726]     await asyncio.gather(a, b, c, d, e)
+[2024-11-02 09:40:09.726]   File "/usr/lib/python3.10/asyncio/tasks.py", line 304, in __wakeup
+[2024-11-02 09:40:09.726]     future.result()
+[2024-11-02 09:40:09.726]   File "/usr/lib/python3.10/asyncio/tasks.py", line 232, in __step
+[2024-11-02 09:40:09.726]     result = coro.send(None)
+[2024-11-02 09:40:09.726]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:40:09.726]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:40:09.726]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_core.py", line 620, in get_data
+[2024-11-02 09:40:09.727]     async with session.get(uri) as resp:
+[2024-11-02 09:40:09.727]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/client.py", line 1197, in __aenter__
+[2024-11-02 09:40:09.727]     self._resp = await self._coro
+[2024-11-02 09:40:09.727]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/client.py", line 581, in _request
+[2024-11-02 09:40:09.727]     conn = await self._connector.connect(
+[2024-11-02 09:40:09.727]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 544, in connect
+[2024-11-02 09:40:09.727]     proto = await self._create_connection(req, traces, timeout)
+[2024-11-02 09:40:09.727]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 942, in _create_connection
+[2024-11-02 09:40:09.727]     _, proto = await self._create_proxy_connection(req, traces, timeout)
+[2024-11-02 09:40:09.727]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 1379, in _create_proxy_connection
+[2024-11-02 09:40:09.727]     return await self._start_tls_connection(
+[2024-11-02 09:40:09.728]   File "/usr/local/lib/python3.10/dist-packages/aiohttp/connector.py", line 1172, in _start_tls_connection
+[2024-11-02 09:40:09.728]     raise client_error(req.connection_key, OSError(msg))
+[2024-11-02 09:40:09.728] aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host raw.githubusercontent.com:443 ssl:default [None]
+[2024-11-02 09:40:09.871] ===== startup.py 启动成功 ======
+[2024-11-02 09:40:09.871] ===== 加载模型中 ======
+[2024-11-02 09:40:09.908] /root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-GGUF/nodes.py:79: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:206.)
+  torch_tensor = torch.from_numpy(tensor.data) # mmap
+[2024-11-02 09:40:09.913] 
+ggml_sd_loader:
+[2024-11-02 09:40:09.913]  GGMLQuantizationType.F32      322
+[2024-11-02 09:40:09.913]  GGMLQuantizationType.Q3_K     194
+[2024-11-02 09:40:09.935] model weight dtype torch.bfloat16, manual cast: None
+[2024-11-02 09:40:09.937] model_type FLUX
+[2024-11-02 09:40:10.585] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7fc977fe3a70>
+[2024-11-02 09:40:10.585] Traceback (most recent call last):
+[2024-11-02 09:40:10.585]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:40:10.585]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:40:10.585] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:40:10.586] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7fc977fe3ae0>
+[2024-11-02 09:40:10.586] Traceback (most recent call last):
+[2024-11-02 09:40:10.586]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:40:10.586]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:40:10.586] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:40:10.586] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7fc977fe3b50>
+[2024-11-02 09:40:10.586] Traceback (most recent call last):
+[2024-11-02 09:40:10.586]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:40:10.586]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:40:10.586] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:40:10.586] Exception ignored in: <coroutine object default_cache_update.<locals>.get_cache at 0x7fc977fe3bc0>
+[2024-11-02 09:40:10.586] Traceback (most recent call last):
+[2024-11-02 09:40:10.586]   File "/root/workdir_comfy/ComfyUI/custom_nodes/ComfyUI-Manager/glob/manager_server.py", line 1349, in get_cache
+[2024-11-02 09:40:10.587]     json_obj = await core.get_data(uri, True)
+[2024-11-02 09:40:10.587] RuntimeError: coroutine ignored GeneratorExit
+[2024-11-02 09:40:14.456] 
+ggml_sd_loader:
+[2024-11-02 09:40:14.457]  GGMLQuantizationType.Q3_K     168
+[2024-11-02 09:40:14.457]  GGMLQuantizationType.F32       50
+[2024-11-02 09:40:14.457]  GGMLQuantizationType.Q6_K       1
+[2024-11-02 09:40:14.681] ===== 模型加载完成 ======
+[2024-11-02 09:40:14.684]  * Serving Flask app 'startup'
+[2024-11-02 09:40:14.684]  * Debug mode: off
+[2024-11-02 09:40:14.686] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8083
+ * Running on http://172.28.4.10:8083
+[2024-11-02 09:40:14.686] [33mPress CTRL+C to quit[0m
+[2024-11-02 09:40:25.875] 提示词长度: 7字
+[2024-11-02 09:40:25.876] 图片大小: 1024*1024
+[2024-11-02 09:40:25.934] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:40:25.935] Retrying request to /chat/completions in 0.786428 seconds
+[2024-11-02 09:40:27.079] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:40:27.093] Requested to load FluxClipModel_
+[2024-11-02 09:40:27.093] Loading 1 new model
+[2024-11-02 09:40:27.696] loaded completely 0.0 2237.80810546875 True
+[2024-11-02 09:40:28.685] Requested to load Flux
+[2024-11-02 09:40:28.685] Loading 1 new model
+[2024-11-02 09:40:29.723] loaded completely 0.0 3570.375244140625 True
+[2024-11-02 09:40:38.383] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.35it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.32it/s]
+[2024-11-02 09:40:38.395] Using pytorch attention in VAE
+[2024-11-02 09:40:38.397] Using pytorch attention in VAE
+[2024-11-02 09:40:38.456] Requested to load AutoencodingEngine
+[2024-11-02 09:40:38.457] Loading 1 new model
+[2024-11-02 09:40:38.779] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:40:39.265] 127.0.0.1 - - [02/Nov/2024 09:40:39] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:40:39.271] 提示词长度: 7字
+[2024-11-02 09:40:39.271] 图片大小: 1024*1024
+[2024-11-02 09:40:39.668] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:40:48.717] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]
+[2024-11-02 09:40:48.727] Using pytorch attention in VAE
+[2024-11-02 09:40:48.728] Using pytorch attention in VAE
+[2024-11-02 09:40:48.785] Requested to load AutoencodingEngine
+[2024-11-02 09:40:48.785] Loading 1 new model
+[2024-11-02 09:40:48.815] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:40:49.075] 127.0.0.1 - - [02/Nov/2024 09:40:49] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:40:49.079] 提示词长度: 7字
+[2024-11-02 09:40:49.079] 图片大小: 1024*1024
+[2024-11-02 09:40:49.125] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:40:49.126] Retrying request to /chat/completions in 0.886575 seconds
+[2024-11-02 09:40:50.378] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:40:59.400] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:40:59.410] Using pytorch attention in VAE
+[2024-11-02 09:40:59.411] Using pytorch attention in VAE
+[2024-11-02 09:40:59.473] Requested to load AutoencodingEngine
+[2024-11-02 09:40:59.473] Loading 1 new model
+[2024-11-02 09:40:59.502] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:40:59.760] 127.0.0.1 - - [02/Nov/2024 09:40:59] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:40:59.766] 提示词长度: 7字
+[2024-11-02 09:40:59.766] 图片大小: 1024*1024
+[2024-11-02 09:41:00.169] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:41:09.166] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:41:09.176] Using pytorch attention in VAE
+[2024-11-02 09:41:09.177] Using pytorch attention in VAE
+[2024-11-02 09:41:09.236] Requested to load AutoencodingEngine
+[2024-11-02 09:41:09.236] Loading 1 new model
+[2024-11-02 09:41:09.265] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:41:09.523] 127.0.0.1 - - [02/Nov/2024 09:41:09] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:41:09.528] 提示词长度: 7字
+[2024-11-02 09:41:09.529] 图片大小: 1024*1024
+[2024-11-02 09:41:09.581] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:41:09.582] Retrying request to /chat/completions in 0.866697 seconds
+[2024-11-02 09:41:10.831] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:41:19.949] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:41:19.959] Using pytorch attention in VAE
+[2024-11-02 09:41:19.960] Using pytorch attention in VAE
+[2024-11-02 09:41:20.019] Requested to load AutoencodingEngine
+[2024-11-02 09:41:20.019] Loading 1 new model
+[2024-11-02 09:41:20.050] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:41:20.309] 127.0.0.1 - - [02/Nov/2024 09:41:20] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:41:20.313] 提示词长度: 7字
+[2024-11-02 09:41:20.314] 图片大小: 1024*1024
+[2024-11-02 09:41:20.378] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:41:20.379] Retrying request to /chat/completions in 0.940384 seconds
+[2024-11-02 09:41:21.681] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:41:30.738] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.30it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.32it/s]
+[2024-11-02 09:41:30.747] Using pytorch attention in VAE
+[2024-11-02 09:41:30.749] Using pytorch attention in VAE
+[2024-11-02 09:41:30.807] Requested to load AutoencodingEngine
+[2024-11-02 09:41:30.807] Loading 1 new model
+[2024-11-02 09:41:30.835] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:41:31.086] 127.0.0.1 - - [02/Nov/2024 09:41:31] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:41:31.092] 提示词长度: 7字
+[2024-11-02 09:41:31.092] 图片大小: 1024*1024
+[2024-11-02 09:41:31.146] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:41:31.147] Retrying request to /chat/completions in 0.887454 seconds
+[2024-11-02 09:41:33.381] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:41:42.445] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:41:42.454] Using pytorch attention in VAE
+[2024-11-02 09:41:42.455] Using pytorch attention in VAE
+[2024-11-02 09:41:42.511] Requested to load AutoencodingEngine
+[2024-11-02 09:41:42.511] Loading 1 new model
+[2024-11-02 09:41:42.543] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:41:42.803] 127.0.0.1 - - [02/Nov/2024 09:41:42] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:41:42.808] 提示词长度: 7字
+[2024-11-02 09:41:42.808] 图片大小: 1024*1024
+[2024-11-02 09:41:44.211] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:41:53.219] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:41:53.228] Using pytorch attention in VAE
+[2024-11-02 09:41:53.229] Using pytorch attention in VAE
+[2024-11-02 09:41:53.288] Requested to load AutoencodingEngine
+[2024-11-02 09:41:53.288] Loading 1 new model
+[2024-11-02 09:41:53.318] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:41:53.573] 127.0.0.1 - - [02/Nov/2024 09:41:53] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:41:53.578] 提示词长度: 7字
+[2024-11-02 09:41:53.578] 图片大小: 1024*1024
+[2024-11-02 09:41:53.624] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 503 Service Unavailable"
+[2024-11-02 09:41:53.625] Retrying request to /chat/completions in 0.874768 seconds
+[2024-11-02 09:41:54.894] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:42:03.911] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.34it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:42:03.921] Using pytorch attention in VAE
+[2024-11-02 09:42:03.922] Using pytorch attention in VAE
+[2024-11-02 09:42:03.996] Requested to load AutoencodingEngine
+[2024-11-02 09:42:03.996] Loading 1 new model
+[2024-11-02 09:42:04.025] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:42:04.284] 127.0.0.1 - - [02/Nov/2024 09:42:04] "POST /api/v1/images/text2img HTTP/1.1" 200 -
+[2024-11-02 09:42:04.290] 提示词长度: 7字
+[2024-11-02 09:42:04.290] 图片大小: 1024*1024
+[2024-11-02 09:42:04.701] HTTP Request: POST http://modelhub.4pd.io/learnware/models/openai/4pd/api/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-11-02 09:42:13.704] 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]100%|██████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [00:08<00:00,  2.33it/s]
+[2024-11-02 09:42:13.713] Using pytorch attention in VAE
+[2024-11-02 09:42:13.714] Using pytorch attention in VAE
+[2024-11-02 09:42:13.773] Requested to load AutoencodingEngine
+[2024-11-02 09:42:13.773] Loading 1 new model
+[2024-11-02 09:42:13.801] loaded completely 0.0 159.87335777282715 True
+[2024-11-02 09:42:14.060] 127.0.0.1 - - [02/Nov/2024 09:42:14] "POST /api/v1/images/text2img HTTP/1.1" 200 -
