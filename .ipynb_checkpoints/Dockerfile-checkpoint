@@ -1,7 +1,0 @@
-# FROM harbor.4pd.io/lab-platform/pk_platform/model_services/diffusers_qinyu:base_20240619
-FROM harbor.4pd.io/lab-platform/pk_platform/model_services/text2image_qinyu:base_20240619
-ADD . /root/workdir
-WORKDIR /root/workdir
-EXPOSE 80
-SHELL [ "/bin/bash", "--login", "-c"]
-CMD python startup.py
